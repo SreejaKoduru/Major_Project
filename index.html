@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Major_project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="first">
+    <div id="heading">
+      <h1>Weather App</h1>
+    </div>
+    <div id="time">
+      <h1 id="current-time">time</h1>
+      <h2 id="current-date">date</h2>
+    </div> 
+  </div>
+  <div class="container">
+    <div id="mybox">
+      <div class="search">
+        <input class="place" type="text" placeholder="Enter your location">
+      </div>
+      <p class="notification"></p>
+      <button class="currentLocation    btn-light"  style="cursor: pointer;">Use Current Location</button>
+      <div class="pin">
+        <img class="pin" src="icons/pin-map.png" width="30px" height="30px" alt="">
+        <h1 class="location" style="font-size: 20px;">City Name</h1>
+      </div>     
+      <div class="weather-icon"><img src="icons/unknown.png" width="180px" alt=""></div>
+      <h4 class="temperature-description">Climate</h4>
+      <h1 class="temperature-value" style="font-size:50px;">°C</h1>
+      <div class="today">
+        <div>
+          <img class="mid" src="icons/humidity.png" width="90px" alt="">
+          <div class="pmt">
+            <p class="size" id="humidity">Humidity: _%</p>
+          </div>
+        </div>
+        <div>
+          <img class="mid" src="icons/wind.png" width="90px" alt="">
+          <div class="pmt">
+            <p style="margin-top:0%;" class="size" id="wind-speed">Wind Speed: _km/s</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="forecast"> 
+      <div class="box" >
+        <p class="date">Day 1</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 2</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 3</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 4</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 5</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 6</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+      <div class="box" >
+        <p class="date">Day 7</p>
+        <p class="temp">Temperature: _°C</p>
+        <p class="humidity">Humidity: _%</p>
+        <p class="wind">Wind Speed: _km/s</p>
+        <img class="icon" src="icons/unknown.png" width="40px" alt="">
+        <p class="desc">Climate</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <canvas id="temperature-humidity-chart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+#heading{
+    font-size: 40px;
+    margin:15px ;
+
+}
+#time{
+    margin:15px ;
+    margin-left: 10px;
+}
+#current-time{
+    font-size: 20px;
+    font-style: inherit;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+#current-date{
+    font-size: 20px;
+    font-style: oblique;
+}
+
+.first{
+    display: flex;
+    justify-content: space-between;
+}
+body {
+    background-image:url(https://t4.ftcdn.net/jpg/06/37/24/33/240_F_637243379_RUQU7aLVlP2EA5VLUoXT1uG2mh9IsRVw.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* backdrop-filter: blur(5px); */
+}
+.container {
+    display: flex;
+    place-items: center;
+    justify-content: space-around;
+}
+.mid{
+    margin-left: 20px;
+}
+.search {
+    display: flex;
+    justify-content: space-evenly;
+    font: 90px;
+}
+.pin {
+    display: flex;
+    place-items: center;
+
+}
+#mybox {
+    width: 400px;
+    height: 600px;
+    border: solid 0.5px;
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    margin: 25px;
+    display: grid;
+    place-items: center;
+}
+.btn-light {
+    border-radius: 5px;
+    background-color: aliceblue;
+    width: 150px;
+    height: 30px;
+    border: 1px;
+  }
+  .btn-light:hover{
+    background-color: rgb(218, 224, 229);
+
+  } 
+.box {
+    width: auto;
+    height: 40px;
+    border: 1px solid black;
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    margin: 1px;
+    display:flex;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 0px;
+    align-items: center; 
+    font-size: 16px;
+    .date {
+        width: 85px;
+        font-size: 30px;
+        margin-right: 25px;
+        background-color:aliceblue;
+        padding: 12px 0px 12px 10px;
+    }
+    .temp {
+        width: 130px;
+        margin-right: 25px;
+    }
+    .humidity {
+        width: 100px ;
+        margin-right: 25px;
+    }
+    .wind {
+        width: 150px;
+        margin-right: 25px;
+    }
+    .icon {
+        width: 50px;
+        margin-right: 25px;
+        height: 50px;
+    }
+
+}
+
+.pmt{
+    display: flex;
+    place-items: center;
+    justify-content: space-around;
+}
+.place {
+    margin-top: 5px;
+    margin-left: 0px;
+    width: 350px;
+    height: 40px;
+    border: 1px;
+    border-radius: 10px;
+}
+.today {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    justify-content: space-around;
+}
+.size{
+    font-size: 15px;
+    margin: 13px;
+}
+.days {
+    margin-top:20px ;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+ 
+  
+.day-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 100px 0.3s ease-out;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+  
+.box.active .day-content {
+    max-height: 400px; 
+    transition: 100px 0.3s ease-in;
+}
+ 
+.days {
+  margin: 20px;
+}
+#temperature-humidity-chart{
+    backdrop-filter: blur(100px);
+    width: 100px;
+    height: 80px;
+    margin: 30px;
+}
