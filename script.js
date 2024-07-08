@@ -1,8 +1,6 @@
 const KELVIN = 273;
-// API KEY
 const key = "f885e86e06355a45c4247486cfb1f93c";
 
-// Set up the clock display
 function updateClock() {
   const now = new Date();
   const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -11,11 +9,9 @@ function updateClock() {
   document.getElementById('current-date').textContent = date;
 }
 
-// Update the clock every second
 setInterval(updateClock, 1000);
 updateClock();
 
-// Function to display current weather
 function displayWeather(data) {
   const temperatureElement = document.querySelector('.temperature-value');
   const descriptionElement = document.querySelector('.temperature-description');
@@ -39,11 +35,9 @@ function displayWeather(data) {
   windSpeedElement.textContent = `Wind Speed: ${windSpeed} km/s`;
 }
 
-// Function to display the 7-day forecast
 function displayForecast(data) {
   const forecastBoxes = document.querySelectorAll('.forecast .box');
 
-  // Group forecast data by date
   const groupedData = data.list.reduce((acc, item) => {
     const date = item.dt_txt.split(' ')[0];
     if (!acc[date]) {
@@ -71,11 +65,10 @@ function displayForecast(data) {
     };
   });
 
-  // Calculate the 7th day forecast based on averages of the first 6 days
   const avgTemp7thDay = dailyData.slice(0, 6).reduce((sum, day) => sum + day.temp, 0) / 6;
   const avgHumidity7thDay = dailyData.slice(0, 6).reduce((sum, day) => sum + day.humidity, 0) / 6;
-  const icon7thDay = dailyData[2].icon; // Example icon selection, adjust as needed
-  const description7thDay = dailyData[2].description; // Example description selection, adjust as needed
+  const icon7thDay = dailyData[2].icon;
+  const description7thDay = dailyData[2].description;
   const avgWindSpeed7thDay = dailyData.slice(0, 6).reduce((sum, day) => sum + day.windSpeed, 0) / 6;
 
   const seventhDay = {
@@ -109,75 +102,69 @@ function displayForecast(data) {
     }
   });
 
-  // Call function to plot the temperature and humidity chart
   plotTemperatureHumidityGraph(dailyData);
 }
 
 function plotTemperatureHumidityGraph(dailyData) {
-    const dates = dailyData.map(data => data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-    const temperatures = dailyData.map(data => Math.floor(data.temp - KELVIN));
-    const humidities = dailyData.map(data => Math.round(data.humidity));
-    const ctx = document.getElementById('temperature-humidity-chart').getContext('2d');
-    
-    window.myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: 'Temperature (°C)',
-                data: temperatures,
-                fill: false,
-                borderColor: 'rgba(300, 0, 0, 1)', // Dark red
-                borderWidth: 2,
-                pointBackgroundColor: 'rgba(300, 0, 0, 1)', // Dark red
-                pointRadius: 4,
-                pointHoverRadius: 6
-            }, {
-                label: 'Humidity (%)',
-                data: humidities,
-                fill: false,
-                borderColor: 'rgba(0, 0, 300, 1)', // Dark blue
-                borderWidth: 2,
-                pointBackgroundColor: 'rgba(0, 0, 300, 1)', // Dark blue
-                pointRadius: 4,
-                pointHoverRadius: 6
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: false,
-                        fontColor: 'rgba(0, 0, 0, 1)' // Darker tick labels
-                    },
-                    gridLines: {
-                        color: 'rgba(0, 0, 0, 1)' // Darker grid lines
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        fontColor: 'rgba(0, 0, 0, 1)' // Darker tick labels
-                    },
-                    gridLines: {
-                        color: 'rgba(0, 0, 0, 1)' // Darker grid lines
-                    }
-                }]
-            },
-            legend: {
-                labels: {
-                    fontColor: 'rgba(0, 0, 0, 1)' // Darker legend labels
-                }
-            }
+  const dates = dailyData.map(data => data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+  const temperatures = dailyData.map(data => Math.floor(data.temp - KELVIN));
+  const humidities = dailyData.map(data => Math.round(data.humidity));
+  const ctx = document.getElementById('temperature-humidity-chart').getContext('2d');
+
+  window.myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'Temperature (°C)',
+        data: temperatures,
+        fill: false,
+        borderColor: 'rgba(300, 0, 0, 1)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(300, 0, 0, 1)',
+        pointRadius: 4,
+        pointHoverRadius: 6
+      }, {
+        label: 'Humidity (%)',
+        data: humidities,
+        fill: false,
+        borderColor: 'rgba(0, 0, 300, 1)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(0, 0, 300, 1)',
+        pointRadius: 4,
+        pointHoverRadius: 6
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          ticks: {
+            beginAtZero: false,
+            fontColor: 'rgba(0, 0, 0, 1)'
+          },
+          gridLines: {
+            color: 'rgba(0, 0, 0, 1)'
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontColor: 'rgba(0, 0, 0, 1)'
+          },
+          gridLines: {
+            color: 'rgba(0, 0, 0, 1)'
+          }
+        }]
+      },
+      legend: {
+        labels: {
+          fontColor: 'rgba(0, 0, 0, 1)'
         }
-    });
-    
+      }
+    }
+  });
+}
 
-    
-  }
-    
-
-// Fetch weather data by city name
 function getWeatherByCity(city) {
   const api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
 
@@ -186,7 +173,6 @@ function getWeatherByCity(city) {
     .then(data => displayWeather(data));
 }
 
-// Fetch forecast data by city name
 function getForecastByCity(city) {
   const api = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`;
 
@@ -195,7 +181,6 @@ function getForecastByCity(city) {
     .then(data => displayForecast(data));
 }
 
-// Fetch weather data by geographic coordinates
 function getWeatherByCoordinates(latitude, longitude) {
   const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
 
@@ -204,7 +189,6 @@ function getWeatherByCoordinates(latitude, longitude) {
     .then(data => displayWeather(data));
 }
 
-// Fetch forecast data by geographic coordinates
 function getForecastByCoordinates(latitude, longitude) {
   const api = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${key}`;
 
@@ -213,45 +197,36 @@ function getForecastByCoordinates(latitude, longitude) {
     .then(data => displayForecast(data));
 }
 
-// Event listeners for search input and current location button
 document.querySelector('.place').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        const city = event.target.value;
-
-        // Reset weather and forecast display to default
-        resetWeatherDisplay();
-
-        // Fetch new weather and forecast data
-        getWeatherByCity(city);
-        getForecastByCity(city);
-    }
+  if (event.key === 'Enter') {
+    const city = event.target.value;
+    resetWeatherDisplay();
+    getWeatherByCity(city);
+    getForecastByCity(city);
+  }
 });
 
 function resetWeatherDisplay() {
-    // Reset temperature value to default
-    document.querySelector('.temperature-value').innerHTML = `°<span>C</span>`;
-    
-    // Reset other weather elements as needed (description, location, icon, humidity, wind speed, etc.)
-    document.querySelector('.temperature-description').textContent = 'Climate';
-    document.querySelector('.location').textContent = 'City Name';
-    document.querySelector('.weather-icon img').src = 'icons/unknown.png';
-    document.getElementById('humidity').textContent = 'Humidity: _%';
-    document.getElementById('wind-speed').textContent = 'Wind Speed: _ km/s';
+  document.querySelector('.temperature-value').innerHTML = `°<span>C</span>`;
+  document.querySelector('.temperature-description').textContent = 'Climate';
+  document.querySelector('.location').textContent = 'City Name';
+  document.querySelector('.weather-icon img').src = 'icons/unknown.png';
+  document.getElementById('humidity').textContent = 'Humidity: _%';
+  document.getElementById('wind-speed').textContent = 'Wind Speed: _ km/s';
 
-    // Reset forecast boxes
-    const forecastBoxes = document.querySelectorAll('.forecast .box');
-    forecastBoxes.forEach(box => {
-        box.querySelector('.temp').innerHTML = 'Temperature: _°C';
-        box.querySelector('.icon').src = 'icons/unknown.png';
-        box.querySelector('.desc').textContent = 'Climate';
-        box.querySelector('.humidity').textContent = 'Humidity: _%';
-        box.querySelector('.wind').textContent = 'Wind Speed: _ km/s';
-    });
-    if (window.myChart) {
-        window.myChart.destroy();
-    }
+  const forecastBoxes = document.querySelectorAll('.forecast .box');
+  forecastBoxes.forEach(box => {
+    box.querySelector('.temp').innerHTML = 'Temperature: _°C';
+    box.querySelector('.icon').src = 'icons/unknown.png';
+    box.querySelector('.desc').textContent = 'Climate';
+    box.querySelector('.humidity').textContent = 'Humidity: _%';
+    box.querySelector('.wind').textContent = 'Wind Speed: _ km/s';
+  });
+
+  if (window.myChart) {
+    window.myChart.destroy();
+  }
 }
-
 
 document.querySelector('.currentLocation').addEventListener('click', function () {
   if (navigator.geolocation) {
